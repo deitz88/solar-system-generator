@@ -49,16 +49,33 @@ def draw_background(cr, width, height, white, yellow, blue):
         cr.arc(random.randint(0, width), random.randint(0, height), random.uniform(.1, 5), 0, 2*math.pi)
         cr.set_source_rgb(167/255, 188/255, 1)
         cr.fill()
-        
-def points_on_circum(r,n=100):
+
+
+     
+# def points_on_circum(r,n=100):
+#                 points_positive = []
+#                 for x in range(0,n+1):
+#                     xcoord = (math.cos(2*math.pi/n*x)*r)
+#                     ycoord = (math.sin(2*math.pi/n*x)*r)
+#                     if(xcoord > 0 and ycoord > 0):
+#                         points_positive.append((xcoord, ycoord))
+#                 print(points_positive)
+#                 return points_positive
+
+def points_on_circum(r, width):
+                print(r, "this is insive function")
                 points_positive = []
-                for x in range(0,n+1):
-                    xcoord = (math.cos(2*math.pi/n*x)*r)
-                    ycoord = (math.sin(2*math.pi/n*x)*r)
+                for x in range(0, 100):
+                    xcoord = (math.cos(1.8*x) *r) + width/2 
+                    ycoord = (math.cos(x) *r)
                     if(xcoord > 0 and ycoord > 0):
                         points_positive.append((xcoord, ycoord))
+                # print(points_positive)
                 return points_positive
-   
+    
+# def points_on_circum(r,n=100):
+#     return [(math.cos(2*math.pi/n*x)*r,math.sin(2*math.pi/n*x)*r) for x in range(0,n+1)]
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--width", help="Specify Width", default=3000, type=int)
@@ -115,6 +132,7 @@ def main():
             
             if(args.orbit):
                 # cr, line, x, y, radius, r, g, b
+                print(height - next_center - border_size, "this is at the orbit draw spot", x)
                 draw_orbit(cr, 4, width/2, sun_center, height - next_center - border_size, .6, .6, .6)
                 draw_circle_fill(cr, width/2, next_center, next_size*1.3, 0, 0, 0)
             elif(args.line):
@@ -136,9 +154,12 @@ def main():
                 # what arg, x, y, radius, r, g, b
                     # x^ + y^ = r^
                 # (cr, x, y, radius, ...)
-                placement = random.choice(points_on_circum(next_center))
+                arc = height - next_center - border_size
+                print(arc, "this is at the draw planet part", x)
+                placement = random.choice(points_on_circum(arc, width))
+                print (placement)
                 # draw_circle_fill(cr, width/2, next_center, next_size, r, g, b)
-                draw_circle_fill(cr, placement[1],placement[0], next_size, r, g, b)
+                draw_circle_fill(cr, placement[0],placement[1], next_size, r, g, b)
                 
             elif(args.line):
                    
