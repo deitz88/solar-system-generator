@@ -62,19 +62,19 @@ def draw_background(cr, width, height, white, yellow, blue):
 #                 print(points_positive)
 #                 return points_positive
 
-def points_on_circum(r, width):
+def points_on_circum(r, width, height, border):
                 print(r, "this is insive function")
                 points_positive = []
                 for x in range(0, 100):
                     xcoord = (math.cos(1.8*x) *r) + width/2 
-                    ycoord = (math.cos(x) *r)
-                    if(xcoord > 0 and ycoord > 0):
+                    ycoord = -1 * (math.sin(1.8*x) *r) + height - border
+                    if((xcoord > 0 and xcoord < width-border) and (ycoord > 0 and ycoord < height - border)):
                         points_positive.append((xcoord, ycoord))
                 # print(points_positive)
                 return points_positive
     
-# def points_on_circum(r,n=100):
-#     return [(math.cos(2*math.pi/n*x)*r,math.sin(2*math.pi/n*x)*r) for x in range(0,n+1)]
+# def points_on_circum(r, width ,n=100):
+#     return [((-1*(math.cos(2*math.pi/n*x)*r) - width/2),math.sin(2*math.pi/n*x)*r) for x in range(0,n+1)]
 
 def main():
     parser = argparse.ArgumentParser()
@@ -156,7 +156,7 @@ def main():
                 # (cr, x, y, radius, ...)
                 arc = height - next_center - border_size
                 print(arc, "this is at the draw planet part", x)
-                placement = random.choice(points_on_circum(arc, width))
+                placement = random.choice(points_on_circum(arc, width, height, border_size))
                 print (placement)
                 # draw_circle_fill(cr, width/2, next_center, next_size, r, g, b)
                 draw_circle_fill(cr, placement[0],placement[1], next_size, r, g, b)
