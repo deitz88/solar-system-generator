@@ -64,7 +64,7 @@ def draw_background(cr, width, height, white, yellow, blue):
         cr.set_source_rgb(167/255, 188/255, 1)
         cr.fill()
 
-
+# for randomization along orbit arc
 def points_on_circum(r, width, height, border):
     print(r, "this is insive function")
     points_positive = []
@@ -96,6 +96,7 @@ def main():
     # white_star= int(input('white star number: '))
     # yellow_star= int(input('yellow star number: '))
     # blue_star= int(input('blue star number: '))
+    # border_size = int(input('border size: '))
 
     white_star = 350
     blue_star = 30
@@ -104,7 +105,6 @@ def main():
     args = parser.parse_args()
 
     width, height = args.width, args.height
-    # border_size = int(input('border size: '))
     sun_size = args.sunsize
 
     sun_center = height - border_size
@@ -115,8 +115,7 @@ def main():
     draw_background(cr, width, height, white_star, yellow_star, blue_star)
 
     sun_color = random.choice(list_of_colors)
-    sun_r, sun_g, sun_b = sun_color[0] / \
-        255.0, sun_color[1]/255.0, sun_color[2]/255.0
+    sun_r, sun_g, sun_b = sun_color[0]/255.0, sun_color[1]/255.0, sun_color[2]/255.0
 
     draw_circle_fill(cr, width/2, sun_center, sun_size, sun_r, sun_g, sun_b)
 
@@ -154,9 +153,13 @@ def main():
                 cr.move_to(border_size * 2, next_center)
                 cr.line_to(width-(border_size*2), next_center)
                 cr.stroke()
-                draw_circle_fill(cr, move_line, next_center,
-                                 next_size*1.5, 0, 0, 0)
-                # draw_rings(cr, 2,move_line, next_center, next_size*1.5, 0, 0, 0)
+                if(args.random < 5):
+                    draw_circle_fill(cr, move_line, next_center,
+                                    next_size*1.5, 0, 0, 0)
+                elif(args.random > 5):
+                    draw_circle_fill(cr, width/2, next_center,
+                                    next_size*1.5, 0, 0, 0)
+                    
 
             rand_color = random.choice(list_of_colors)
             while (rand_color is last_color):
@@ -176,7 +179,11 @@ def main():
                                      next_size, r, g, b)
 
             elif(args.line):
-                draw_circle_fill(cr, move_line, next_center,
+                if(args.random < 5):
+                    draw_circle_fill(cr, move_line, next_center,
+                                    next_size, r, g, b)
+                elif(args.random > 5):
+                    draw_circle_fill(cr, width/2, next_center,
                                  next_size, r, g, b)
 
             last_center = next_center
