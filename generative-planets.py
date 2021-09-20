@@ -1,10 +1,13 @@
 
+from pathlib import PosixPath
 import cairo
 import PIL
 import argparse
 import math
 import random
+import copy
 from PIL import Image, ImageDraw
+# from test2 import make_nebula
 
 list_of_colors = [(145, 185, 141), (229, 192, 121), (210, 191, 88), (140, 190, 178), (255, 183, 10), (189, 190, 220),
                   (221, 79, 91), (16, 182, 98), (227, 146, 80), (241, 133, 123), (110,
@@ -13,7 +16,6 @@ list_of_colors = [(145, 185, 141), (229, 192, 121), (210, 191, 88), (140, 190, 1
 
 
 def float_gen(a, b): return random.uniform(a, b)
-
 
 def draw_orbit(cr, line, x, y, radius, r, g, b):
     cr.set_line_width(line)
@@ -66,14 +68,12 @@ def draw_background(cr, width, height, white, yellow, blue):
 
 # for randomization along orbit arc
 def points_on_circum(r, width, height, border):
-    print(r, "this is insive function")
     points_positive = []
     for x in range(0, 100):
         xcoord = (math.cos(1.8*x) * r) + width/2
         ycoord = -1 * (math.sin(1.8*x) * r) + height - border
         if((xcoord > 0 and xcoord < width-border+30) and (ycoord > 0 and ycoord < height - border + 100)):
             points_positive.append((xcoord, ycoord))
-    # print(points_positive)
     return points_positive
 
 
@@ -84,21 +84,21 @@ def main():
     parser.add_argument("--height", help="Specify Height",
                         default=2000, type=int)
     parser.add_argument(
-        "-o", "--orbit", help="Actual Orbits", action="store_true")
+        "-o", "--orbit", help="Actual Orbits", default=True, action="store_true")
     parser.add_argument("-l", "--line", help=".", action="store_true")
     parser.add_argument("-s", "--sunsize", help=".",
                         default=random.randint(100, 400), type=int)
     parser.add_argument("-bs", "--bordersize", help=".", default=50, type=int)
     parser.add_argument("-n", "--noise", help="Texture",
                         default=.4, type=float)
-    parser.add_argument("-r", "--random", help="Random placements", type=int)
+    parser.add_argument("-r", "--random", help="Random placements", default=.4, type=float)
 
     # white_star= int(input('white star number: '))
     # yellow_star= int(input('yellow star number: '))
     # blue_star= int(input('blue star number: '))
     # border_size = int(input('border size: '))
 
-    white_star = 350
+    white_star = 1000
     blue_star = 30
     yellow_star = 60
     border_size = 25
@@ -126,7 +126,100 @@ def main():
 
     min_size = 5
     max_size = 70
+    
+    # def make_nebula():
 
+    #     float_gen = lambda a, b: random.uniform(a, b)
+
+    #     colors = []
+    #     for i in range(15):
+    #         colors.append((float_gen(.1, 1.3), float_gen(.1, .5), float_gen(.1, 1.3)))
+    #         colors.append((0, 0, 0))
+
+    #     def octagon(x_orig, y_orig, side):
+    #         side = side * random.randint(1, 3)
+    #         x = x_orig
+    #         y = y_orig
+    #         d = side / math.sqrt(2)
+
+    #         oct = []
+
+    #         oct.append((x, y))
+
+    #         x += side
+    #         oct.append((x, y))
+
+    #         x += d
+    #         y += d
+    #         oct.append((x, y))
+
+    #         y += side
+    #         oct.append((x, y))
+
+    #         x -= d
+    #         y += d
+    #         oct.append((x, y))
+
+    #         x -= side
+    #         oct.append((x, y))
+
+    #         x -= d
+    #         y -= d
+    #         oct.append((x, y))
+
+    #         y -= side
+    #         oct.append((x, y))
+
+    #         x += d
+    #         y -= d
+    #         oct.append((x, y))
+
+    #         return oct
+
+    #     def deform(shape, iterations, variance):
+    #         for i in range(iterations):
+    #             for j in range(len(shape)-1, 0, -1):
+    #                 midpoint = ((shape[j-1][0] + shape[j][0])/2 + float_gen(-variance, variance), (shape[j-1][1] + shape[j][1])/2 + float_gen(-variance, variance))
+    #                 shape.insert(j, midpoint)
+    #         return shape
+
+    #     def build():
+            
+    #         initial = 1
+    #         deviation = 250
+    #         basedeforms = 1
+    #         finaldeforms = 3
+    #         minshapes = 20
+    #         maxshapes = 200
+    #         shapealpha = .008
+
+    #         # cr.set_source_rgb(0, 0, 0)
+        
+    #         # cr.rectangle(0, 0, width, height)
+            
+    #         # cr.fill()
+            
+
+    #         cr.set_line_width(1)
+
+    #         for p in range(-int((height*.2)/3), int((height*1.2)/3), 80):
+    #             cr.set_source_rgba(random.choice(colors)[0], random.choice(colors)[1], random.choice(colors)[2], shapealpha)
+
+    #             shape = octagon(random.randint(width*.3, width*.8), random.randint(1, height), random.randint(4, 30))
+                
+    #             baseshape = deform(shape, basedeforms, initial)
+
+    #             for j in range(random.randint(minshapes, maxshapes)):
+    #                 tempshape = copy.deepcopy(baseshape)
+    #                 layer = deform(tempshape, finaldeforms, deviation)
+
+    #                 for i in range(len(layer)):
+    #                     cr.line_to(layer[i][0], layer[i][1])
+    #                 cr.fill()
+
+    #     build()
+    
+    # make_nebula()
     for x in range(1, 20):
         next_size = random.randint(min_size, max_size)
         next_center = last_center - last_size - \
@@ -194,7 +287,7 @@ def main():
 
     draw_border(cr, border_size, sun_r, sun_g, sun_b, width, height)
 
-    ims.write_to_png('Examples/Generative-Space-Flat-' +
+    ims.write_to_png('public/media/Generative-Space-Flat-' +
                      str(width) + 'w-' + str(height) + 'h.png')
 
     pil_image = Image.open('Examples/Generative-Space-Flat-' +

@@ -70,42 +70,31 @@ def points_on_circum(r, width, height, border):
     points_positive = []
     for x in range(0, 100):
         xcoord = (math.cos(1.8*x) * r) + width/2
-        ycoord = -1 * (math.sin(1.8*x) * r) + height - border
+        ycoord = (math.sin(-1.8*x) * r) + height - border
         if((xcoord > 0 and xcoord < width-border+30) and (ycoord > 0 and ycoord < height - border + 100)):
             points_positive.append((xcoord, ycoord))
     # print(points_positive)
     return points_positive
 
+sun = random.randint(100, 4000)
+color = random.choice(list_of_colors)
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--width", help="Specify Width",
-                        default=3000, type=int)
-    parser.add_argument("--height", help="Specify Height",
-                        default=2000, type=int)
-    parser.add_argument(
-        "-o", "--orbit", help="Actual Orbits", action="store_true")
-    parser.add_argument("-l", "--line", help=".", action="store_true")
-    parser.add_argument("-s", "--sunsize", help=".",
-                        default=random.randint(100, 400), type=int)
-    parser.add_argument("-bs", "--bordersize", help=".", default=50, type=int)
-    parser.add_argument("-n", "--noise", help="Texture",
-                        default=.4, type=float)
-    parser.add_argument("-r", "--random", help="Random placements", type=int)
-
-    # white_star= int(input('white star number: '))
-    # yellow_star= int(input('yellow star number: '))
-    # blue_star= int(input('blue star number: '))
-    # border_size = int(input('border size: '))
-
+    # changable values on input, these are defaults
+    width = 3000
+    height = 2000
+    orbit = True
+    line = False
+    # 4(-) not random, 6(+) random
+    random = 4
+    noise = .4
     white_star = 350
     blue_star = 30
     yellow_star = 60
     border_size = 25
-    args = parser.parse_args()
-
-    width, height = args.width, args.height
-    sun_size = args.sunsize
+    
+   
+    sun_size = sun
 
     sun_center = height - border_size
 
@@ -114,7 +103,7 @@ def main():
 
     draw_background(cr, width, height, white_star, yellow_star, blue_star)
 
-    sun_color = random.choice(list_of_colors)
+    sun_color = color
     sun_r, sun_g, sun_b = sun_color[0]/255.0, sun_color[1]/255.0, sun_color[2]/255.0
 
     draw_circle_fill(cr, width/2, sun_center, sun_size, sun_r, sun_g, sun_b)
@@ -140,49 +129,49 @@ def main():
             placement = random.choice(points_on_circum(
                 arc, width, height, border_size))
 
-            if(args.orbit):
+            if(orbit):
                 draw_orbit(cr, 4, width/2, sun_center, height -
                            next_center - border_size, .6, .6, .6)
-                if(args.random < 5):
+                if(random < 5):
                     draw_circle_fill(
                         cr, placement[0], placement[1], next_size*1.3, 0, 0, 0)
-                elif(args.random > 5):
+                elif(random > 5):
                     draw_circle_fill(cr, width/2, next_center,
                                      next_size*1.3, 0, 0, 0)
-            elif(args.line):
+            elif(line):
                 cr.move_to(border_size * 2, next_center)
                 cr.line_to(width-(border_size*2), next_center)
                 cr.stroke()
-                if(args.random < 5):
+                if(random < 5):
                     draw_circle_fill(cr, move_line, next_center,
                                     next_size*1.5, 0, 0, 0)
-                elif(args.random > 5):
+                elif(random > 5):
                     draw_circle_fill(cr, width/2, next_center,
                                     next_size*1.5, 0, 0, 0)
                     
 
-            rand_color = random.choice(list_of_colors)
+            rand_color = color
             while (rand_color is last_color):
-                rand_color = random.choice(list_of_colors)
+                rand_color = color
 
             last_color = rand_color
 
             r, g, b = rand_color[0]/255.0, rand_color[1] / \
                 255.0, rand_color[2]/255.0
 
-            if(args.orbit):
-                if(args.random < 5):
+            if(orbit):
+                if(random < 5):
                     draw_circle_fill(
                         cr, placement[0], placement[1], next_size, r, g, b)
-                elif(args.random > 5):
+                elif(random > 5):
                     draw_circle_fill(cr, width/2, next_center,
                                      next_size, r, g, b)
 
-            elif(args.line):
-                if(args.random < 5):
+            elif(line):
+                if(random < 5):
                     draw_circle_fill(cr, move_line, next_center,
                                     next_size, r, g, b)
-                elif(args.random > 5):
+                elif(random > 5):
                     draw_circle_fill(cr, width/2, next_center,
                                  next_size, r, g, b)
 
@@ -205,7 +194,7 @@ def main():
         for j in range(pil_image.size[1]):
             r, g, b = pixels[i, j]
 
-            noise = float_gen(1.0 - args.noise, 1.0 + args.noise)
+            noise = float_gen(1.0 - noise, 1.0 + noise)
             pixels[i, j] = (int(r*noise), int(g*noise), int(b*noise))
     pil_image.save('Examples/Generative-Space-Texture-' +
                    str(width) + 'w-' + str(height) + 'h.png')
