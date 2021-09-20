@@ -1,8 +1,8 @@
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('planet', views.planet, name='planet')
+    path('generate', views.generate, name='generate'), 
+    # path('planet', views.planet, name='planet')
 ]
