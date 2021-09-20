@@ -4,7 +4,9 @@ import PIL
 import argparse
 import math
 import random
+import copy
 from PIL import Image, ImageDraw
+# from test2 import make_nebula
 
 list_of_colors = [(145, 185, 141), (229, 192, 121), (210, 191, 88), (140, 190, 178), (255, 183, 10), (189, 190, 220),
                   (221, 79, 91), (16, 182, 98), (227, 146, 80), (241, 133, 123), (110,
@@ -13,7 +15,6 @@ list_of_colors = [(145, 185, 141), (229, 192, 121), (210, 191, 88), (140, 190, 1
 
 
 def float_gen(a, b): return random.uniform(a, b)
-
 
 def draw_orbit(cr, line, x, y, radius, r, g, b):
     cr.set_line_width(line)
@@ -69,30 +70,24 @@ def points_on_circum(r, width, height, border):
     points_positive = []
     for x in range(0, 100):
         xcoord = (math.cos(1.8*x) * r) + width/2
-        ycoord = (math.sin(-1.8*x) * r) + height - border
+        ycoord = -1 * (math.sin(1.8*x) * r) + height - border
         if((xcoord > 0 and xcoord < width-border+30) and (ycoord > 0 and ycoord < height - border + 100)):
             points_positive.append((xcoord, ycoord))
     return points_positive
 
-sun = random.randint(100, 4000)
-color = random.choice(list_of_colors)
 
 def main():
-    # changable values on input, these are defaults
+    
     width = 3000
     height = 2000
-    # orbit = True
-    # line = False
-    rand = True
-    noise = .4
-    white_star = 350
+    rendering = 'orbit'
+    white_star = 1000
     blue_star = 30
     yellow_star = 60
     border_size = 25
-    rendering = 'orbit'
-    
-   
-    sun_size = sun
+    rand = True
+    noise = .4
+    sun_size = random.randint(100, 400)
 
     sun_center = height - border_size
 
@@ -101,7 +96,7 @@ def main():
 
     draw_background(cr, width, height, white_star, yellow_star, blue_star)
 
-    sun_color = color
+    sun_color = random.choice(list_of_colors)
     sun_r, sun_g, sun_b = sun_color[0]/255.0, sun_color[1]/255.0, sun_color[2]/255.0
 
     draw_circle_fill(cr, width/2, sun_center, sun_size, sun_r, sun_g, sun_b)
@@ -113,7 +108,7 @@ def main():
 
     min_size = 5
     max_size = 70
-
+  
     for x in range(1, 20):
         next_size = random.randint(min_size, max_size)
         next_center = last_center - last_size - \
@@ -133,7 +128,7 @@ def main():
                 if(rand == True):
                     draw_circle_fill(
                         cr, placement[0], placement[1], next_size*1.3, 0, 0, 0)
-                else:
+                elif(rand == False):
                     draw_circle_fill(cr, width/2, next_center,
                                      next_size*1.3, 0, 0, 0)
             elif(rendering == 'line'):
@@ -143,14 +138,14 @@ def main():
                 if(rand == True):
                     draw_circle_fill(cr, move_line, next_center,
                                     next_size*1.5, 0, 0, 0)
-                else:
+                elif(rand == False):
                     draw_circle_fill(cr, width/2, next_center,
                                     next_size*1.5, 0, 0, 0)
                     
 
-            rand_color = color
+            rand_color = random.choice(list_of_colors)
             while (rand_color is last_color):
-                rand_color = color
+                rand_color = random.choice(list_of_colors)
 
             last_color = rand_color
 
@@ -161,7 +156,7 @@ def main():
                 if(rand == True):
                     draw_circle_fill(
                         cr, placement[0], placement[1], next_size, r, g, b)
-                else:
+                elif(rand == False):
                     draw_circle_fill(cr, width/2, next_center,
                                      next_size, r, g, b)
 
@@ -169,7 +164,7 @@ def main():
                 if(rand == True):
                     draw_circle_fill(cr, move_line, next_center,
                                     next_size, r, g, b)
-                else:
+                elif(rand == False):
                     draw_circle_fill(cr, width/2, next_center,
                                  next_size, r, g, b)
 
@@ -181,10 +176,10 @@ def main():
 
     draw_border(cr, border_size, sun_r, sun_g, sun_b, width, height)
 
-    ims.write_to_png('public/media/Generative-Space-Flat-' +
+    ims.write_to_png('../public/media/Generative-Space-Flat-' +
                      str(width) + 'w-' + str(height) + 'h.png')
 
-    pil_image = Image.open('public/media/Generative-Space-Flat-' +
+    pil_image = Image.open('../public/media/Generative-Space-Flat-' +
                            str(width) + 'w-' + str(height) + 'h.png')
     pixels = pil_image.load()
 
@@ -194,7 +189,7 @@ def main():
 
             noise = float_gen(1.0 - noise, 1.0 + noise)
             pixels[i, j] = (int(r*noise), int(g*noise), int(b*noise))
-    pil_image.save('public/media/Generative-Space-Texture-' +
+    pil_image.save('../public/media/Generative-Space-Texture-' +
                    str(width) + 'w-' + str(height) + 'h.png')
 
 

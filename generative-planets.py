@@ -1,5 +1,4 @@
 
-from pathlib import PosixPath
 import cairo
 import PIL
 import argparse
@@ -290,7 +289,7 @@ def main():
     ims.write_to_png('public/media/Generative-Space-Flat-' +
                      str(width) + 'w-' + str(height) + 'h.png')
 
-    pil_image = Image.open('Examples/Generative-Space-Flat-' +
+    pil_image = Image.open('public/media/Generative-Space-Flat-' +
                            str(width) + 'w-' + str(height) + 'h.png')
     pixels = pil_image.load()
 
@@ -300,7 +299,7 @@ def main():
 
             noise = float_gen(1.0 - args.noise, 1.0 + args.noise)
             pixels[i, j] = (int(r*noise), int(g*noise), int(b*noise))
-    pil_image.save('Examples/Generative-Space-Texture-' +
+    pil_image.save('public/media/Generative-Space-Texture-' +
                    str(width) + 'w-' + str(height) + 'h.png')
 
 

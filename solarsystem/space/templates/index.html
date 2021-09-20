@@ -1,8 +1,33 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
 <h1>Home</h1>
 <form action='/planet'>
+    {{ planet_form }}
+    <!-- <div>
+        <p>Orbit Type:</p>
+        <input type="radio" id="q1c1" name="type" value="orbit"
+               checked>
+        <label for="q1c1">Orbit</label>
+        <input type="radio" id="q1c2" name="type" value="line">
+        <label for="q1c2">Line</label>
+      </div>
+      <br />
+      <div>
+        <p>Random Orbit Placement:</p>
+        <input type="radio" id="q2c1" name="type" value="true"
+               checked>
+        <label for="q2c1">True</label>
+        <input type="radio" id="q2c2" name="type" value="line">
+        <label for="q2c2">Line</label>
+      </div>
+      <br />
+      <div class="slidecontainerwhite">
+        <input type="range" min="0" max="1250" value="300" class="slider" id="whitestarrange">
+        <h3 id='whitestarcount'>3</h3>
+      </div> -->
+    
 <button>Click me</button>
 </form>
 
