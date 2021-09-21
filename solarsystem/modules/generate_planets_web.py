@@ -126,8 +126,13 @@ def main():
                 draw_orbit(cr, 4, width/2, sun_center, height -
                            next_center - border_size, .6, .6, .6)
                 if(rand == True):
-                    draw_circle_fill(
-                        cr, placement[0], placement[1], next_size*1.3, 0, 0, 0)
+                    test = random.randint(1, 3)
+                    if test > 2:
+                        draw_circle_fill(
+                            cr, placement[0], placement[1], next_size*1.3, 1, 1, 1)
+                    else:
+                        draw_circle_fill(
+                            cr, placement[0], placement[1], next_size*1.3, 0, 0, 0)
                 elif(rand == False):
                     draw_circle_fill(cr, width/2, next_center,
                                      next_size*1.3, 0, 0, 0)
