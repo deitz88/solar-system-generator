@@ -1,7 +1,25 @@
-
+<script>
+  function loader(){
+    document.getElementById('form_cont').style.visibility = 'hidden'
+    loaderCont = document.getElementById('loader_cont')
+    loaderCont.style.display = 'block'
+    loaderCont.style.width = '100%'
+    loaderCont.style.height = '100%'
+    loaderCont.style.backgroundColor = 'black'
+  }
+</script>
 {% extends 'base.html' %}
 {% block content %}
+<div id=loader_cont style="display: none;">
+  <div id='loader_image' style="text-align: center; padding-top: 10%; background-color: black;">
+    {% load static %}
+    <img src="{% static 'loading_title.png' %}" style="width: 50vw; margin: -10;" alt='loading title'/>
+    <br />
+    <img src="{% static 'loading.gif' %}" style="width: 50vw; margin: -5%; margin-top: -5%; padding: 0;" alt='loading'/>
 
+  </div>
+</div>
+<div id='form_cont'>
 <h1>Home</h1>
 <form action='/planet' method="POST">
   {% csrf_token %}
@@ -12,7 +30,8 @@
     <br /> <br />
     {% endfor %}
 
-<button type='submit'>Click me</button>
+<button type='submit' onclick="loader()">Generate</button>
 </form>
+</div>
 
 {% endblock %}

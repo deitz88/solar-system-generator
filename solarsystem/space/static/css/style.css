@@ -1,0 +1,23 @@
+.nav_link{
+    list-style: none;
+    display: inline-flex;
+    /* justify-content:space-evenly; */
+    margin-right: 15%;
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+}
+.nav_link:hover{
+    background-color: rgb(150, 150, 150)
+}
+
+
+a{
+    text-decoration: none;
+    color: rgb(131, 202, 206);
+}
+
+.nav-wrapper{
+background-color: black;
+list-style: none;
+}

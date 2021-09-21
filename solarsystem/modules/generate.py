@@ -215,11 +215,11 @@ def generate_planets(display_type, randomize, rings, nebula, border, width, heig
                 max_size += 5 * x
 
         draw_border(cr, border_size, sun_r, sun_g, sun_b, width, height)
-
-        ims.write_to_png('../public/media/Generative-Space-Flat-' +
+# SolarSystems2/solarsystem/space/static
+        ims.write_to_png('../solarsystem/space/static/renderings/Generative-Space-Flat-' +
                             str(width) + 'w-' + str(height) + 'h.png')
 
-        pil_image = Image.open('../public/media/Generative-Space-Flat-' +
+        pil_image = Image.open('../solarsystem/space/static/renderings/Generative-Space-Flat-' +
                                 str(width) + 'w-' + str(height) + 'h.png')
         pixels = pil_image.load()
 
@@ -229,7 +229,7 @@ def generate_planets(display_type, randomize, rings, nebula, border, width, heig
 
                 noise = float_gen(1.0 - noise, 1.0 + noise)
                 pixels[i, j] = (int(r*noise), int(g*noise), int(b*noise))
-        pil_image.save('../public/media/Generative-Space-Texture-' +
+        pil_image.save('../solarsystem/space/static/renderings/Generative-Space-Texture-' +
                         str(width) + 'w-' + str(height) + 'h.png')
 
     main()

@@ -1,12 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stuff</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Solar System Generator</title>
 </head>
 <body>
+    <header class="navbar-fixed">
+        <nav>
+        <div class="nav-wrapper">
+        <ul id="nav">
+            <li class='nav_link'><a href="/">Home</a></li>
+            <li class='nav_link'><a href="{% url 'generate' %}">Generate Art</a></li>
+        </ul>
+        </div>
+    </nav>
+    </header>
     {% block content %}
     {% endblock %}
 </body>
