@@ -1,11 +1,24 @@
-
 {% extends 'base.html' %}
 {% block content %}
 <br /><br />
-<div id='test'></div>
-<h1 id='home_header'>Home</h1>
+<div class="welcome_banner">
+    <div class="welcome_banner_container">
+        <p class="welcome_banner_container_text">
+            Hello
+        </p>
+
+        <ul class="welcome_banner_container_list">
+            <li class="item">World !</li>
+            <li class="item">...you !</li>
+            <li class="item">friend !</li>
+            <li class="item">erryone !</li>
+        </ul>
+    </div>
+</div>
+<!-- <h1 id='home_header'>Home</h1> -->
 <br />
 <form action="/generate">
-<button>To Generate!</button></form>
+    <button>To Generate!</button>
+</form>
 
 {% endblock %}

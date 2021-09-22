@@ -1,3 +1,4 @@
+from typing import ClassVar
 from space.widgets import RangeInput
 from django.db import models
 from django.urls import reverse

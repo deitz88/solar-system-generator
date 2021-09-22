@@ -1,0 +1,30 @@
+label {
+    font-family: "Gemunu Libre", sans-serif;
+    color: red;
+    font-size: 20px;
+}
+#form_cont {
+    margin: auto;
+    width: 400px;
+}
+
+select {
+    display: inline;
+    position: relative;
+    width: fit-content;
+    font-size: 10px;
+    padding: 0px;
+    height: fit-content;
+    color: green;
+}
+
+labelp[display] {
+    color: green;
+}
+
+input {
+    color: green;
+}
+body {
+    background-color: black;
+}

@@ -1,26 +1,37 @@
 {% load static %}
+{% load sass_tags %}
+{% include 'material/includes/material_css.html' %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'css/style.scss' %}">
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'css/form.scss' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@300&display=swap" rel="stylesheet">
+
     <title>Solar System Generator</title>
 </head>
+
 <body>
-    <header class="navbar-fixed">
+    <header class="navbar-fixedx">
         <nav>
-        <div class="nav-wrapper">
-        <ul id="nav">
-            <li id='home' class='nav_link'><a href="/">Home</a></li>
-            <li class='nav_link'><a id='generate' href="{% url 'generate' %}">Generate Art</a></li>
-            <li id='developer' class='nav_link'><a href="https://www.jasondeitz.com" target="_blank" rel="noopener noreferrer">Developer Portfilo</a></li>
-        </ul>
-        </div>
-    </nav>
+            <div class="nav-wrap">
+                <ul id="nav">
+                    <li id='home' class='nav_item'><a id="item_link" href="/">Home</a></li>
+                    <li class='nav_item'><a id='item_link' href="/generate">Generate Art</a></li>
+                    <li id='developer' class='nav_item'><a id="item_link" href="https://www.jasondeitz.com"
+                            target="_blank" rel="noopener noreferrer">Developer Portfilo</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
     {% block content %}
     {% endblock %}
 </body>
+
 </html>

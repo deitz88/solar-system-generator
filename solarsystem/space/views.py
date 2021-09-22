@@ -7,7 +7,7 @@ def index(request):
     return render(request, 'index.html')
 
 def generate(request):
-    generate_form = PlanetForm()
+    generate_form = PlanetForm(auto_id=True)
     return render(request, 'planet_generate.html', {'generate_form': generate_form})
 
 def planet(request):
