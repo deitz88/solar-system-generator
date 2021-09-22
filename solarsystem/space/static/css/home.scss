@@ -1,0 +1,114 @@
+body {
+    font: 1em sans-serif;
+    text-align: center;
+}
+.stage {
+    border-bottom: 3px solid #444;
+    display: flex;
+    height: 338;
+    width: 100%;
+}
+.box {
+    // position: absolute;
+    align-self: flex-end;
+    transform-origin: top-left;
+    animation: expand 3s, swing 8s ease 3s 1 normal both, fall 0.5s null 11s 1 normal none,
+        bounce-7 1.8s cubic-bezier(0.28, 0.84, 0.42, 2) 11s 1 normal none;
+    background-color: #f44336;
+    height: 200px;
+    margin: 0 auto 0 auto;
+    width: 200px;
+}
+@keyframes bounce-7 {
+    0% {
+        transform: scale(1, 1) translateY(0);
+    }
+    10% {
+        transform: scale(1.1, 0.9) translateY(0);
+    }
+    30% {
+        transform: scale(0.9, 1.1) translateY(-100px);
+    }
+    50% {
+        transform: scale(1.05, 0.95) translateY(0);
+    }
+    57% {
+        transform: scale(1, 1) translateY(-7px);
+    }
+    64% {
+        transform: scale(1, 1) translateY(0);
+    }
+    99% {
+        transform: scale(1, 1) translateY(0);
+    }
+    100% {
+        transform: scale(1, 1) translateY(0vh);
+    }
+}
+@keyframes swing {
+    0% {
+        transform: translateY(-29vh);
+    }
+    10% {
+        //left
+        transform: translateY(-29vh) rotate(15deg);
+        transform-origin: top-left;
+    }
+    20% {
+        //right
+        transform: translateY(-29vh) rotate(-10deg);
+        transform-origin: top-left;
+    }
+    35% {
+        //left
+        transform: translateY(-29vh) rotate(5deg);
+        transform-origin: top-left;
+    }
+    60% {
+        //right
+        transform: translateY(-29vh) rotate(-2deg);
+        transform-origin: top-left;
+    }
+    80% {
+        //left
+        transform: translateY(-29vh) rotate(5deg);
+        transform-origin: top-left;
+    }
+    81% {
+        transform: translateY(-25vh) rotate(5deg);
+        transform-origin: top-left;
+    }
+    82% {
+        transform: translateY(-26vh) rotate(8deg);
+        transform-origin: top-left;
+    }
+    99% {
+        transform: translateY(-25vh) rotate(12deg);
+        transform-origin: top-left;
+    }
+    100% {
+        transform: translateY(0vh);
+        transform-origin: top-left;
+    }
+}
+@keyframes expand {
+    0% {
+        height: 0px;
+        transform: translateY(-29vh);
+    }
+    99% {
+        transform: translateY(-29vh);
+        height: 200px;
+    }
+    100% {
+        transform: translateY(0vh);
+    }
+}
+@keyframes fall {
+    0% {
+        transform: translatey(-29vh);
+    }
+    100% {
+        transform: translateY(0vh);
+    }
+}

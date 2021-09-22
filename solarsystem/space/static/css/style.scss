@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 #nav {
-  margin-top: -3px;
+  margin-top: 3px;
   border: 5px solid black;
   display: flex;
   text-align: center;
@@ -52,7 +52,7 @@ body {
 // home-page banner
 .welcome_banner {
   position: absolute;
-  top: 20%;
+  top: 23%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 160px;
