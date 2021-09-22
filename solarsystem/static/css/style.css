@@ -49,9 +49,10 @@ body {
   transform: translate(-50%, -50%);
   height: 160px;
   overflow: hidden;
+  width: fit-content;
   font-family: "Gemunu Libre", sans-serif;
   font-size: 35px;
-  line-height: 45px;
+  line-height: 40px;
   color: #ecf0f1; }
   .welcome_banner_container {
     font-weight: 600;
@@ -89,7 +90,7 @@ body {
       animation-iteration-count: infinite; }
       .welcome_banner_container_list .item {
         line-height: 45px;
-        margin-left: 100px; }
+        margin-left: 140px; }
 
 /* Keyframes */
 @keyframes opacity {
@@ -127,11 +128,12 @@ body {
     margin-left: -1.6em; }
   .welcome_banner {
     font-size: 20px;
-    width: 40%;
+    width: fit-content;
     top: 22%; }
   .item {
     right: 60%;
-    position: relative; }
+    width: fit-content;
+    padding-right: 10px; }
   #item_link {
     font-size: 15px; }
   .nav-wrap {

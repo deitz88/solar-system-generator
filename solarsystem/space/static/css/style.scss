@@ -57,10 +57,10 @@ body {
   transform: translate(-50%, -50%);
   height: 160px;
   overflow: hidden;
-
+  width: fit-content;
   font-family: "Gemunu Libre", sans-serif;
   font-size: 35px;
-  line-height: 45px;
+  line-height: 40px;
   color: #ecf0f1;
 
   &_container {
@@ -111,7 +111,7 @@ body {
       .item {
         line-height: 45px;
         // font-size: 35px;
-        margin-left: 100px;
+        margin-left: 140px;
       }
     }
   }
@@ -165,12 +165,14 @@ body {
   }
   .welcome_banner {
     font-size: 20px;
-    width: 40%;
+    width: fit-content;
     top: 22%;
   }
   .item {
     right: 60%;
-    position: relative;
+    // position: relative;
+    width: fit-content;
+    padding-right: 10px;
   }
   #item_link {
     font-size: 15px;
