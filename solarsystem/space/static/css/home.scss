@@ -2,6 +2,7 @@ body {
     font: 1em sans-serif;
     text-align: center;
 }
+
 #home_text {
     text-indent: 40px;
     font-family: "Gemunu Libre", sans-serif;
@@ -19,12 +20,14 @@ body {
     background-color: black;
     border: solid 1px rgba(255, 179, 0, 0.737);
     border-radius: 5px;
-    display: flex;
-    align-self: center;
-    text-align: center;
-    transform: translateX(220px) translateY(2vh);
-    margin-bottom: -10px;
+    position: relative;
+    bottom: -6vh;
+    right: 3.5vw;
+    transform: translateX(220px) translateY(4vh);
+    width: fit-content;
+    padding: 3px 6px;
 }
+
 .stage {
     border-bottom: 3px solid #444;
     display: flex;
@@ -162,8 +165,10 @@ body {
         margin-top: 3px;
     }
     .generatebtn {
-        display: inline;
-        margin-left: -120px;
+        // display: inline;
+        // margin-left: -120px;
+        left: 50;
+        bottom: 1;
     }
     @keyframes bounce-7 {
         0% {

@@ -1,11 +1,26 @@
 label {
   font-family: "Gemunu Libre", sans-serif;
-  color: red;
-  font-size: 20px; }
+  color: rgba(255, 0, 0, 0.702);
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  position: relative; }
 
 #form_cont {
   margin: auto;
-  width: 400px; }
+  width: 400px;
+  text-align: left; }
+
+#generate_header {
+  text-indent: 40px;
+  font-family: "Gemunu Libre", sans-serif;
+  color: #83cace;
+  font-size: 20px;
+  letter-spacing: 2px;
+  line-height: 40px;
+  text-align: start;
+  padding: 10px;
+  padding-left: 20px; }
 
 select {
   display: inline;
@@ -14,13 +29,14 @@ select {
   font-size: 10px;
   padding: 0px;
   height: fit-content;
-  color: green; }
-
-labelp[display] {
-  color: green; }
+  color: #83cace;
+  background-color: black;
+  border: solid 1px rgba(255, 179, 0, 0.737); }
 
 input {
-  color: green; }
+  color: #83cace;
+  background-color: black;
+  border-bottom: solid 1px rgba(255, 179, 0, 0.737); }
 
 body {
   background-color: black; }

@@ -7,6 +7,7 @@
     loaderCont.style.height = '100%'
     loaderCont.style.backgroundColor = 'black'
     document.querySelector('body').style.backgroundColor = 'black'
+    window.scroll(0, 0);
 
   }
 </script>
@@ -24,7 +25,7 @@
   </div>
 </div>
 <div id='form_cont'>
-  <h1>Home</h1>
+  <h1 id="generate_header">Generate System Map:</h1>
   <form action='/planet' method="POST">
     {% csrf_token %}
     {{ generate_form.as_p }}
