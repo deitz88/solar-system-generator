@@ -14,7 +14,7 @@ class SolarSystem(models.Model):
   display_type = models.CharField(max_length=100, choices=DISPLAYTYPE, default='Orbit', name='Display')
   random = models.CharField(max_length=100, choices=RANDOMIZE, default=True, name='Randomize Placement?')
   rings = models.CharField(max_length=100, choices=RINGS, default=True, name='Rings')
-  nebula = models.CharField(max_length=100, choices=NEBULA, default=True, name='Nebula Background')
+  # nebula = models.CharField(max_length=100, choices=NEBULA, default=True, name='Nebula Background')
   border_size = models.IntegerField(default=40, name='Border Size')
 #   maybe take out height and width
   width = models.IntegerField(default=3000, name='Width of Image')
@@ -29,3 +29,6 @@ class SolarSystem(models.Model):
 #   to add: color themes, comet, asteroid?, movement?
   def __str__(self):
     return self.name
+  
+class Nebula(models.Model):
+  name = models.CharField(max_length=100, name='Name of Nebula')

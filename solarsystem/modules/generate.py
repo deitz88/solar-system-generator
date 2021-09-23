@@ -110,15 +110,16 @@ def generate_planets(display_type, randomize, rings, nebula, border, width, heig
             make_rings = True
         else: 
             make_rings = False
-        if neb:
-            print(neb)
+     
         
         sun_center = height - border_size
 
         ims = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
         cr = cairo.Context(ims)
 
+    
         draw_background(cr, width, height, white_star, yellow_star, blue_star)
+        
 
         sun_color = random.choice(list_of_colors)
         sun_r, sun_g, sun_b = sun_color[0] / \

@@ -1,6 +1,6 @@
 from django.db import models
 from django.forms import ModelForm, widgets, CharField, IntegerField, FloatField
-from .models import SolarSystem
+from .models import SolarSystem, Nebula
 
 
 # display_type = models.CharField(max_length=100, choices=DISPLAYTYPE, default='Orbit', name='Display')
@@ -22,4 +22,8 @@ class PlanetForm(ModelForm):
   class Meta:
     model = SolarSystem
     fields = '__all__'
-    
+
+class NebulaForm(ModelForm):
+  class Meta:
+    model = Nebula
+    fields = '__all__'

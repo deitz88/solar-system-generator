@@ -1,0 +1,36 @@
+<script>
+    function loader() {
+        document.getElementById('form_cont').style.visibility = 'hidden'
+        loaderCont = document.getElementById('loader_cont')
+        loaderCont.style.display = 'block'
+        loaderCont.style.width = '100%'
+        loaderCont.style.height = '100%'
+        loaderCont.style.backgroundColor = 'black'
+        document.querySelector('body').style.backgroundColor = 'black'
+        window.scroll(0, 0);
+    }
+</script>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="color: red;">nebula button here</h1>
+<div id=loader_cont style="display: none;">
+    <div id='loader_image' style="text-align: center; padding-top: 10%; background-color: black;">
+        {% load static %}
+        <img src="{% static 'loading_title.png' %}" style="width: 50vw; margin: -10;" alt='loading title' />
+        <br />
+        <img src="{% static 'loading.gif' %}" style="width: 50vw; margin: -5%; margin-top: -5%; padding: 0;"
+            alt='loading' />
+
+    </div>
+</div>
+<div id='form_cont'>
+    <form action='/nebula' method="POST">
+        {% csrf_token %}
+        {{ nebula.as_p }}
+        <button type='submit' onclick="loader()">Generate</button>
+    </form>
+</div>
+
+{% endblock %}
