@@ -1,4 +1,6 @@
 import asyncio
+
+from django.core.validators import MinLengthValidator
 from modules.generate import generate_planets
 from modules.nebula_generator import generate_nebula
 from django.shortcuts import render
@@ -13,7 +15,7 @@ def generate(request):
     generate_form = PlanetForm(auto_id=True)
     return render(request, 'planet_generate.html', {'generate_form': generate_form})
 
-def generate_nebula(request):
+def generate_nebula_page(request):
     nebula = NebulaForm(auto_id=True)
     return render(request, 'generate_nebula.html', {'nebula': nebula})
 
@@ -40,6 +42,7 @@ def planet(request):
 
 def nebula(request):
     x = request.POST.get
-    name = x('Name of Nebula')
-    generate_nebula(request)
-    return render(request, 'nebula.html')
+    name = x('Name your Nebula')
+    print(name, '<--------------------)')
+    generate_nebula(15, 20)
+    return render(request, 'nebula.html', {'name': name})

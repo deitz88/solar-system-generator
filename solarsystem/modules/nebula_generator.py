@@ -1,7 +1,7 @@
     
 import cairo, sys, copy, math, random
 
-def generate_nebula():
+def generate_nebula(shapes, max_shapes):
     float_gen = lambda a, b: random.uniform(a, b)
 
     colors = []
@@ -62,7 +62,8 @@ def generate_nebula():
                 shape.insert(j, midpoint)
         return shape
 
-
+    min_shape = shapes
+    max_num = max_shapes
     def main():
 
         # size of canvas
@@ -75,8 +76,8 @@ def generate_nebula():
         basedeforms = 1
         finaldeforms = 3
         # oct nums
-        minshapes = 15
-        maxshapes = 20
+        minshapes = int(min_shape)
+        maxshapes = int(max_num)
         # color presense
         shapealpha = .007
 
@@ -106,8 +107,6 @@ def generate_nebula():
                 cr.fill()
         
         ims.write_to_png('../solarsystem/space/static/renderings/nebula.png')
-        # ims.write_to_png('../../solarsystem/space/static/renderings/nebula.png')
         
 
     main()
-generate_nebula()

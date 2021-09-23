@@ -1,5 +1,4 @@
-from typing import ClassVar
-from space.widgets import RangeInput
+import random
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -31,4 +30,13 @@ class SolarSystem(models.Model):
     return self.name
   
 class Nebula(models.Model):
-  name = models.CharField(max_length=100, name='Name of Nebula')
+  def randomName(): 
+    letters = ['P', 'Z', 'B', 'X', 'C', 'L']
+    return 'System '+ random.choice(letters) + random.choice(letters)+ str(random.randint(1, 97))
+  # shapes = models.IntegerField(default=15, name="Min")
+  # max_shapes = models.IntegerField(default=20, name="Max")
+  name = models.CharField(max_length=100, name='Name your Nebula', default=randomName())
+
+  def __str__(self):
+    return self.name
+  

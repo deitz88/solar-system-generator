@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% block content %}
 
-<h1 style='color: red;'>rendering</h1>
-<h1 style='color: red;'>{{ name }}</h1>
+<h1 id='generate_header'>Nebula Identification: '{{name}}'</h1>
 {% load static %}
 <img id='rendering' src="{% static 'renderings/nebula.png' %}" style="width: 80%; margin: auto;" alt='Rendered Solar System' />
 <br />
-{% block content %}
+<!-- <button>Make New Generation</button> -->
+
 {% endblock %}
