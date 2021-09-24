@@ -8,7 +8,7 @@ def generate_nebula(shapes, max_shapes):
     for x in range(10):
         colors.append((0,0,0))
     for i in range(15):
-        colors.append((float_gen(.1, 1), float_gen(.1, .5), float_gen(.1, 1)))
+        colors.append((float_gen(.1, 1), float_gen(.1, float_gen(.5, .65)), float_gen(.1, 1)))
         colors.append((0, 0, 0))
 
     def draw_background(cr, width, height):
