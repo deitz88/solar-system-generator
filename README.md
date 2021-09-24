@@ -9,21 +9,26 @@ While this is a work in progress to make this a Web-App based version, the termi
 
 ## Usage
 
-After cloning the repo:
+Clone the repo. 
 
-navigate to the `Termina-Based` dir and run:
+You must install the `pycairo` dependency:
+
+
+```bash
+pip install pycairo
+```
+
+navigate to the `Terminal-Based` dir and run:   (for solar system generation)
+
 ```bash
 python3 generate.py 
 ````
-for the solar system, and look in the `Examples` folder for rendering.
 
-or:
+or for nebula generation:
 ```bash
 python3 nebula_generator.py
 ```
-for the Nebula Generator.
-
-
+Generations will be rendered in the `Examples` folder inside the `Terminal-Based` dir
 
 ## Examples:
 #### Solar System:
