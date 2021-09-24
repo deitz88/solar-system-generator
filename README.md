@@ -9,16 +9,16 @@ While this is a work in progress to make this a Web-App based version, the termi
 
 ## Usage
 
-Clone the repo. 
+Step one: `Clone the repo`
 
-You must install the `pycairo` dependency:
+Then, you must install the `pycairo` dependency:
 
 
 ```bash
 pip install pycairo
 ```
 
-navigate to the `Terminal-Based` dir and run:   (for solar system generation)
+After: navigate to the `Terminal-Based` dir and run:   (for solar system generation)
 
 ```bash
 python3 generate.py 
