@@ -2,21 +2,27 @@
 
 SSG is an amalgamation of coding and my love of space. Within this repo, there is the landing page, generative solar system page with options, and a separate nebula generator. have fun and try giving it a go!
 
+This is a 2-for-1 generative project, build for a generative-art bounty. 
+
+While this is a work in progress to make this a Web-App based version, the terminal command based version works as outlined below. 
+
+
 ## Usage
 
-clone the repo: 
-`https://github.com/deitz88/solar-system-generator`
+After cloning the repo:
 
-then: 
-
-navigate to the `solarsystem` top-level dir where manage.py lives, and run:
+navigate to the `Termina-Based` dir and run:
 ```bash
-pip3 install -r requirements.txt
+python3 generate.py 
 ````
+for the solar system, and look in the `Examples` folder for rendering.
+
+or:
 ```bash
-python3 manage.py runserver
+python3 nebula_generator.py
 ```
-then in your URL bar, navigate/type to `localhost:8000`
+for the Nebula Generator.
+
 
 
 ## Examples:
@@ -41,12 +47,32 @@ then in your URL bar, navigate/type to `localhost:8000`
 <img src="https://user-images.githubusercontent.com/16360065/134601552-f9525ef9-25b9-4af8-974c-e163fdaf30e4.png" width=40% height=40% />
 <img src="https://user-images.githubusercontent.com/16360065/134601685-3c83864b-252f-45df-9f98-d8965c80690f.png" width=40% height=40% />
   </p>
+  
+## Code Snippets:
+##### top-level color selection for nebula: 
+```bash
+float_gen = lambda a, b: random.uniform(a, b)
 
-## Technologies used:
-* Python
-* Django
+colors = []
+for x in range(10):
+    colors.append((0,0,0))
+for i in range(15):
+    colors.append((float_gen(.1, 1), float_gen(.1, float_gen(.5, .65)), float_gen(.1, 1)))
+    colors.append((0, 0, 0))
+```
+<h6>the above code favors red and blue, creating deep purples, reds, and blues. </h6>
 
-####            Image generation import:
 
-* PyCairo/cairo
+##### Favorite snippet from solar system generator:
+```bash
+def points_on_circum(r, width, height, border):
+    points_positive = []
+    for x in range(0, 100):
+        xcoord = (math.cos(1.8*x) * r) + width/2
+        ycoord = -1 * (math.sin(1.8*x) * r) + height - border
+        if((xcoord > 0 and xcoord < width - border+50) and (ycoord > 0 and ycoord < height - border + 100)):
+            points_positive.append((xcoord, ycoord))
+    return points_positive
+```
+<h6>the above code finds all avail points on the circum of the generated arcs, and will randomly place a planet on its arc.</h6>
 
